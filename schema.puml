@@ -1,0 +1,112 @@
+@startuml
+' uncomment the line below if you're using computer with a retina display
+' skinparam dpi 300
+!define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
+' we use bold for primary key
+' green color for unique
+' and underscore for not_null
+!define primary_key(x) <b>x</b>
+!define unique(x) <color:green>x</color>
+!define not_null(x) <u>x</u>
+' other tags available:
+' <i></i>
+' <back:COLOR></color>, where color is a color name or html color code
+' (#FFAACC)
+' see: http://plantuml.com/classes.html#More
+hide methods
+hide stereotypes
+
+' entities
+
+Table(duration, "duration\n(A temporal duration for\nentities in the sytem)") {
+    primary_key(id) LONG
+    not_null(from) DATE
+    to DATE
+}
+
+Table(user, "user\n(User in our system)") {
+    primary_key(id) LONG
+    not_null(firstname) VARCHAR[256]
+    not_null(lastname) VARCHAR[256]
+    unique(not_null(email)) VARCHAR[256]
+}
+
+Table(license, "license\n(The license of a player)") {
+    primary_key(id) LONG
+    fk_user_id LONG
+    not_null(licensenumber) VARCHAR[8]
+    ----
+    unique(fk_user_id|licensenumber)
+}
+license "0..1" --> "1" user : "A user may\n have one license"
+
+Table(license_duration, "license_duration\n(M..N between license and duration)") {
+    not_null(fk_license_id)
+    not_null(fk_duration_id)
+    ----
+    unique(fk_license_id|fk_duration_id)
+}
+license_duration "0..N" --> "1" duration: "A duration may\n be associated with a license"
+license_duration "1..N" --> "1" license: "A license may\n have one ore more durations"
+
+
+Table(course, "course\n(A Swingolf course)") {
+    primary_key(id) LONG
+    name VARCHAR[256]
+    ----
+    unique(name)
+}
+
+Table(course_duration, "course_duration\n(M..N between course and duration)") {
+    not_null(fk_course_id)
+    not_null(fk_duration_id)
+    ----
+    unique(fk_course_id|fk_duration_id)
+}
+course_duration "0..N" --> "1" duration: "A duration may\n be associated with a course"
+course_duration "1..N" --> "1" course: "A course may\n have one ore more durations"
+
+Table(hole, "hole\n(A hole)") {
+    primary_key(id) LONG
+    not_null(fk_course_id) LONG
+    not_null(number) LONG
+    not_null(par) LONG
+    not_null(from) DATE
+    to DATE
+    ----
+    unique(fk_course_id|number|from)
+}
+hole "1..N" --> "1" course : "A course may\n have many holes"
+
+Table(tournament, "tournament\n(A Swingolf tournament)") {
+    primary_key(id) LONG
+    fk_duration_id LONG
+    not_null(name) LONG
+    ----
+    unique(fk_duration_id|name)
+}
+tournament "0..N" --> "1" duration: "A tournament has\n one duration"
+
+Table(game, "game\n(A Swingolf game)") {
+    primary_key(id) LONG
+    not_null(fk_tournament_id) LONG
+    not_null(fk_course_id) LONG
+    not_null(date) DATE
+    name LONG
+    ----
+    unique(fk_tournament_id|fk_course_id|date|name)
+}
+game "0..N" --> "1" course : "A game is played\n on one to many courses"
+game "1..N" --> "1" tournament : "A game is played\n on during one tournament"
+
+Table(score, "score\n(A score for one hole)") {
+    primary_key(id) LONG
+    not_null(fk_game_id) LONG
+    not_null(fk_user_id) LONG
+    not_null(fk_hole_id) LONG
+    not_null(score) INTEGER
+}
+score "0..N" --> "1" user : "A score is exactly for\n one user"
+score "0..N" --> "1" game : "A score is exactly for\n one game"
+score "0..N" --> "1" hole : "A score is exactly for\n one hole"
+@enduml
