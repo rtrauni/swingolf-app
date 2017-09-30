@@ -1,26 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { EventbusService } from './../../eventbus.service';
 import { Subject, Observable, Subscription } from 'rxjs/Rx';
 import { routerTransition } from '../../router.animations';
 
+
 @Component({
-  selector: 'app-players',
-  templateUrl: './players.component.html',
-  styleUrls: ['./players.component.scss'],
+  selector: 'app-tournaments',
+  templateUrl: './tournaments.component.html',
+  styleUrls: ['./tournaments.component.scss'],
   animations: [routerTransition()]
 })
-export class PlayersComponent implements OnInit {
+export class TournamentsComponent implements OnInit {
   private eventBusService: EventbusService;
-  players: Observable<Array<any>>;
+  tournaments: Observable<Array<any>>;
 
   constructor(eventbusService: EventbusService){
     this.eventBusService = eventbusService;
   }
 
+
   ngOnInit() {
-    this.eventBusService.getActiveUsersAndLicense().subscribe(players => {
-      this.players = players;
-      console.log(this.players);
+    this.eventBusService.getTournamentsAndDates().subscribe(tournaments => {
+      this.tournaments = tournaments;
+      console.log(this.tournaments);
     });
   }
+
 }

@@ -4,12 +4,12 @@ import { Subject, Observable, Subscription } from 'rxjs/Rx';
 import { routerTransition } from '../../router.animations';
 
 @Component({
-  selector: 'app-players',
-  templateUrl: './players.component.html',
-  styleUrls: ['./players.component.scss'],
+  selector: 'app-courses',
+  templateUrl: './courses.component.html',
+  styleUrls: ['./courses.component.scss'],
   animations: [routerTransition()]
 })
-export class PlayersComponent implements OnInit {
+export class CoursesComponent implements OnInit {
   private eventBusService: EventbusService;
   players: Observable<Array<any>>;
 
@@ -18,9 +18,10 @@ export class PlayersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.eventBusService.getActiveUsersAndLicense().subscribe(players => {
-      this.players = players;
-      console.log(this.players);
+    this.eventBusService.getCourses().subscribe(courses => {
+      this.courses = courses;
+      console.log(this.courses);
     });
   }
+
 }

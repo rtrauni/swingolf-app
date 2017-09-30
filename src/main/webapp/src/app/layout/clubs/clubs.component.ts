@@ -4,23 +4,24 @@ import { Subject, Observable, Subscription } from 'rxjs/Rx';
 import { routerTransition } from '../../router.animations';
 
 @Component({
-  selector: 'app-players',
-  templateUrl: './players.component.html',
-  styleUrls: ['./players.component.scss'],
+  selector: 'app-clubs',
+  templateUrl: './clubs.component.html',
+  styleUrls: ['./clubs.component.scss'],
   animations: [routerTransition()]
 })
-export class PlayersComponent implements OnInit {
+export class ClubsComponent implements OnInit {
   private eventBusService: EventbusService;
-  players: Observable<Array<any>>;
+  clubs: Observable<Array<any>>;
 
   constructor(eventbusService: EventbusService){
     this.eventBusService = eventbusService;
   }
 
   ngOnInit() {
-    this.eventBusService.getActiveUsersAndLicense().subscribe(players => {
-      this.players = players;
-      console.log(this.players);
+    this.eventBusService.getClubs().subscribe(clubs => {
+      this.clubs = clubs;
+      console.log(this.clubs);
     });
   }
+
 }

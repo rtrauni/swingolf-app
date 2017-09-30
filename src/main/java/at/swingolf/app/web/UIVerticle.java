@@ -14,8 +14,7 @@ public class UIVerticle extends AbstractVerticle {
         Router router = Router.router(vertx);
         BridgeOptions options = new BridgeOptions().
                 addOutboundPermitted(new PermittedOptions().setAddress("ping")).
-                addInboundPermitted(new PermittedOptions().setAddress("users")).
-                addInboundPermitted(new PermittedOptions().setAddress("users-and-license"));
+                addInboundPermitted(new PermittedOptions().setAddressRegex(".*"));
 
         router.route("/eventbus/*").handler(SockJSHandler.create(vertx).bridge(options, event -> {
             // You can also optionally provide a handler like this which will be passed any events that occur on the bridge
