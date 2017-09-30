@@ -12,18 +12,84 @@ export class DashboardComponent implements OnInit {
     public sliders: Array<any> = [];
 
     constructor() {
+
+
+
+
+
+
+
+
+
+
         this.sliders.push({
-            imagePath: 'assets/images/slider1.jpg',
-            label: 'First slide label',
-            text: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+            imagePath: 'assets/images/IMG_1726.jpg',
+            label: 'Marco Bortoli',
+            text: ''
         }, {
-            imagePath: 'assets/images/slider2.jpg',
-            label: 'Second slide label',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            imagePath: 'assets/images/IMG_1729.jpg',
+            label: 'Joe Senf',
+            text: ''
         }, {
-            imagePath: 'assets/images/slider3.jpg',
-            label: 'Third slide label',
-            text: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
+            imagePath: 'assets/images/IMG_1736.jpg',
+            label: 'Thomas Langer',
+            text: ''
+        }, {
+            imagePath: 'assets/images/IMG_1737.jpg',
+            label: 'Stephan Kronsdorfer',
+            text: ''
+        }, {
+            imagePath: 'assets/images/IMG_1742.jpg',
+            label: '',
+            text: ''
+        }, {
+            imagePath: 'assets/images/IMG_1745.jpg',
+            label: '',
+            text: ''
+        }, {
+            imagePath: 'assets/images/IMG_1748.jpg',
+            label: '',
+            text: ''
+        }, {
+            imagePath: 'assets/images/IMG_1749.jpg',
+            label: 'Franz',
+            text: ''
+        }, {
+            imagePath: 'assets/images/IMG_1748.jpg',
+            label: 'Erwin',
+            text: ''
+        }, {
+            imagePath: 'assets/images/IMG_1750.jpg',
+            label: '',
+            text: ''
+        }, {
+            imagePath: 'assets/images/IMG_1751.jpg',
+            label: '',
+            text: ''
+        }, {
+            imagePath: 'assets/images/IMG_1753.jpg',
+            label: '',
+            text: ''
+        }, {
+            imagePath: 'assets/images/IMG_1756.jpg',
+            label: '',
+            text: ''
+        }, {
+            imagePath: 'assets/images/IMG_1757.jpg',
+            label: '',
+            text: ''
+        }, {
+            imagePath: 'assets/images/IMG_1761.jpg',
+            label: '',
+            text: ''
+        }, {
+            imagePath: 'assets/images/IMG_1763.jpg',
+            label: '',
+            text: ''
+        }, {
+            imagePath: 'assets/images/IMG_1765.jpg',
+            label: '',
+            text: ''
         });
 
         this.alerts.push({
