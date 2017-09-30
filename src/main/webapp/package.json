@@ -25,10 +25,13 @@
         "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.4",
         "@ngx-translate/core": "^7.2.0",
         "@ngx-translate/http-loader": "^0.1.0",
+        "@types/vertx3-eventbus-client": "^3.4.0",
         "core-js": "^2.5.1",
         "font-awesome": "^4.7.0",
         "ng2-charts": "^1.6.0",
         "rxjs": "^5.4.3",
+        "vertx3-eventbus-client": "^3.4.2",
+        "vertx3-eventbus-rx-client": "^0.4.1",
         "zone.js": "^0.8.17"
     },
     "devDependencies": {
