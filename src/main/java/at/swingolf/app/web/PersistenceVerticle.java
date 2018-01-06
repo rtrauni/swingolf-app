@@ -24,7 +24,7 @@ public class PersistenceVerticle extends AbstractVerticle {
 
     public void start() throws Exception {
         super.start();
-        driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "test"));
+        driver = GraphDatabase.driver(System.getProperty("bolt","bolt://localhost:7687"), AuthTokens.basic(System.getProperty("bolt-user","neo4j"), System.getProperty("bolt-pass","test")));
         System.out.println("started neo4j");
 
         initQueries();
