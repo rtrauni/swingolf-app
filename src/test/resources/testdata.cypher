@@ -31,6 +31,7 @@ CREATE (inactiveuser)-[:HAS_LICENSE]->(inactiveLicense)
 CREATE (sgclinz:Club {name:'SGC Linz'})
 CREATE (duration20130101tonow:Duration {from: 20130101, to: null})
 CREATE (sgclinz)-[:IS_ACTIVE]->(duration20130101tonow)
+
 CREATE (inactiveclub:Club {name:'Inactive Club'})
 CREATE (duration20121101to20121102:Duration {from: 20121101, to: 20121102})
 CREATE (inactiveclub)-[:IS_ACTIVE]->(duration20121101to20121102)

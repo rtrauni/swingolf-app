@@ -3,6 +3,7 @@ package at.swingolf.app.web;
 public class User {
     public User(Long id, String firstName, String lastName) {
         this.id = id;
+
         this.firstName = firstName;
         this.lastName = lastName;
     }

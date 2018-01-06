@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventbusService } from './../../eventbus.service';
-import { TranslateModule } from '@ngx-translate/core';
-import { ClubsComponent } from './clubs.component';
-import { ClubsRoutingModule } from './clubs-routing.module';
+
+import { PlayerdetailComponent } from './playerdetail.component';
+import { PlayerdetailRoutingModule } from './playerdetail-routing.module';
 import { PageHeaderModule } from './../../shared';
 
 @NgModule({
     imports: [
         CommonModule,
-        ClubsRoutingModule,
-        TranslateModule,
+        PlayerdetailRoutingModule,
         PageHeaderModule
     ],
-    declarations: [ClubsComponent]
+    declarations: [PlayerdetailComponent]
 })
-export class ClubsModule { }
+export class PlayerdetailModule { }

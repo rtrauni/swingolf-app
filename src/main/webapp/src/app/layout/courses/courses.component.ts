@@ -11,7 +11,7 @@ import { routerTransition } from '../../router.animations';
 })
 export class CoursesComponent implements OnInit {
   private eventBusService: EventbusService;
-  players: Observable<Array<any>>;
+  courses: Observable<Array<any>>;
 
   constructor(eventbusService: EventbusService){
     this.eventBusService = eventbusService;

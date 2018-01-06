@@ -1,20 +1,19 @@
 <div  [@routerTransition]>
-    <app-page-header [heading]="'Tournaments'" [icon]="'fa-table'"></app-page-header>
+    <app-page-header heading="{{'Tournaments' | translate}}" [icon]="'fa-table'"></app-page-header>
     <div class="row">
         <div class="col col-xl-12 col-lg-12">
             <div class="card mb-3">
-                <div class="card-header">Tournaments</div>
                 <div class="card-block table-responsive">
                     <table class="table">
                         <thead class="thead-inverse">
                         <tr>
-                            <th>Turnier</th>
-                            <th>Datum</th>
+                            <th>{{'Tournament' | translate}}</th>
+                            <th>{{'Date' | translate}}</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr *ngFor="let tournament of tournaments">
-                            <th scope="row">{{tournament.name}}</th>
+                            <th scope="row"><a routerLink="../tournamentdetail/{{tournament.id}}">{{tournament.name}}</a></th>
                             <td>{{tournament.from | date:'dd.MM.yyyy'}}</td>
                         </tr>
                         </tbody>

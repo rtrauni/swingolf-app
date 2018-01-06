@@ -1,14 +1,13 @@
 <div  [@routerTransition]>
-    <app-page-header [heading]="'Courses'" [icon]="'fa-table'"></app-page-header>
+    <app-page-header heading="{{'Courses' | translate}}" [icon]="'fa-table'"></app-page-header>
     <div class="row">
         <div class="col col-xl-12 col-lg-12">
             <div class="card mb-3">
-                <div class="card-header">Anlagen</div>
                 <div class="card-block table-responsive">
                     <table class="table">
                         <thead class="thead-inverse">
                         <tr>
-                            <th>Name</th>
+                            <th>{{'Name' | translate}}</th>
                         </tr>
                         </thead>
                         <tbody>

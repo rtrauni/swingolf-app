@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventbusService } from './../../eventbus.service';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { CoursesComponent } from './courses.component';
 import { CoursesRoutingModule } from './courses-routing.module';
 import { PageHeaderModule } from './../../shared';
@@ -10,7 +10,8 @@ import { PageHeaderModule } from './../../shared';
     imports: [
         CommonModule,
         CoursesRoutingModule,
-        PageHeaderModule
+        PageHeaderModule,
+        TranslateModule
     ],
     declarations: [CoursesComponent]
 })

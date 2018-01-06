@@ -1,0 +1,62 @@
+<h2 class="text-muted">{{tournaments[0].name}}</h2>
+<hr>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card mb-3">
+            <div class="card-header card-default">
+                Spieler
+            </div>
+            <div class="card-block">
+                <h1>50</h1>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-sm-4 -->
+    <div class="col-sm-4">
+        <div class="card mb-3">
+            <div class="card-header card-default">
+                Datum
+            </div>
+            <div class="card-block bg-white">
+                <h1>12</h1>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-sm-4 -->
+    <!--<div class="col-sm-4">-->
+        <!--<div class="card mb-3">-->
+            <!--<div class="card-header">-->
+                <!--Card title-->
+            <!--</div>-->
+            <!--<div class="card-block bg-white">-->
+                <!--Card content-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+<div class="row">
+    <div class="col col-sm-6">
+        <div class="card mb-3">
+            <div class="card-header">
+                Verteilung je Punktzahl
+            </div>
+            <div class="card-block">
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                </canvas>
+            </div>
+            <div class="card-footer">
+            </div>
+        </div>
+    </div>
+    <div class="col col-sm-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Pie Chart
+                </div>
+                <div class="card-block">
+                    <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    </canvas>
+                </div>
+            </div>
+    </div>
+</div>

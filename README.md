@@ -2,8 +2,15 @@
 
 # Docker
 
-docker run --rm --name neo4j --publish=7474:7474 --publish=7687:7687 neo4j:3.0
+docker run --rm --name neo4j --publish=7474:7474 --publish=7687:7687 -e NEO4J_dbms_memory_heap_maxSize=8G neo4j:3.3
 
 # Slider images
 1000x300
 mogrify -format jpg -resize "1000x300^" -gravity center -crop 1000x300+0+0 +repage *.jpg
+
+# Handicap Data
+copy from http://www.swingolf-dachverband.de/images/hc/Handicap_Lizenzspieler.xls
+convert to csv
+
+# Create New Module
+ng generate component layout/persondetail

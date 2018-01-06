@@ -10,6 +10,8 @@ const routes: Routes = [
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
             { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
             { path: 'players', loadChildren: './players/players.module#PlayersModule' },
+            { path: 'playerdetail/:id', loadChildren: './playerdetail/playerdetail.module#PlayerdetailModule' },
+            { path: 'tournamentdetail/:id', loadChildren: './tournamentdetail/tournamentdetail.module#TournamentdetailModule' },
             { path: 'courses', loadChildren: './courses/courses.module#CoursesModule' },
             { path: 'clubs', loadChildren: './clubs/clubs.module#ClubsModule' },
             { path: 'tournaments', loadChildren: './tournaments/tournaments.module#TournamentsModule' },

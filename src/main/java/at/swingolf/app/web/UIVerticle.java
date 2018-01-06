@@ -32,10 +32,12 @@ public class UIVerticle extends AbstractVerticle {
         // Serve the static resources
         router.route().handler(StaticHandler.create());
 
-        vertx.createHttpServer().requestHandler(router::accept).listen(8080);
+        vertx.createHttpServer().requestHandler(router::accept).listen(8088);
 
         vertx.setPeriodic(1000, t -> vertx.eventBus().publish("ping", "ping"));
 
         vertx.deployVerticle("at.swingolf.app.web.PersistenceVerticle");
+        vertx.deployVerticle("at.swingolf.app.web.ImportVerticle");
+        System.out.println("started webserver");
     }
 }

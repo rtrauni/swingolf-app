@@ -13,6 +13,14 @@ export class EventbusService {
     return this.eventBus.rxSend('users', 'query').map(message => message.body);
   }
 
+  getDetailsForUser(license: String) {
+    return this.eventBus.rxSend('getDetailsForUser', license).map(message => message.body);
+  }
+
+  getDetailsForTournament(tournamentId: String) {
+    return this.eventBus.rxSend('getDetailsForTournament', tournamentId).map(message => message.body);
+  }
+
   getCourses(): Observable<any> {
     return this.eventBus.rxSend('courses', 'query').map(message => message.body);
   }
@@ -32,5 +40,13 @@ export class EventbusService {
   getTournamentsAndDates(): Observable<any> {
     return this.eventBus.rxSend('tournaments-and-dates', 'query').map(message => message.body);
   }
+
+  getScoreSorted(tournamentId: String): Observable<any> {
+                        return this.eventBus.rxSend('score-sorted', tournamentId).map(message => message.body);
+                      }
+
+  getScoreSortedCount(tournamentId: String): Observable<any> {
+                        return this.eventBus.rxSend('score-sorted-count', tournamentId).map(message => message.body);
+                      }
 
 }
