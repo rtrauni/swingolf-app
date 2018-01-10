@@ -11,10 +11,7 @@ import org.neo4j.driver.v1.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class PersistenceVerticle extends AbstractVerticle {
@@ -35,8 +32,10 @@ public class PersistenceVerticle extends AbstractVerticle {
         EventBus eventBus = vertx.eventBus();
 
         eventBus.consumer("users").handler(message -> message.reply(queryArrayByNodeLabel("User", "firstname", "lastname", "email")));
-        eventBus.consumer("courses").handler(message -> message.reply(queryArrayByNodeLabel("Course", "name")));
-        eventBus.consumer("clubs").handler(message -> message.reply(queryArrayByNodeLabel("Club", "name")));
+//        eventBus.consumer("courses").handler(message -> message.reply(queryArrayByNodeLabel("Course", "name")));
+        eventBus.consumer("courses").handler(message -> message.reply(queryCourses()));
+//        eventBus.consumer("clubs").handler(message -> message.reply(queryArrayByNodeLabel("Club", "name")));
+        eventBus.consumer("clubs").handler(message -> message.reply(queryClubs()));
 
         String queryUserByLicense = "MATCH (node1:User) MATCH (node1)-[r:HAS_LICENSE{}]->(node2:License {license:\"param1\"}) RETURN node1.firstname as firstname,node1.lastname as lastname,node1.email as email,node2.license as license ORDER BY license ASC LIMIT 10000";
         eventBus.consumer("getDetailsForUser").handler(message -> message.reply(queryArrayWithCypher(queryUserByLicense.replaceAll("param1",message.body().toString()) , "firstname", "lastname", "email", "license")));
@@ -50,9 +49,13 @@ public class PersistenceVerticle extends AbstractVerticle {
         String queryTournamentsAndDate = "MATCH (node1:Tournament)-[r:HAS_DATE]->(node2:Duration) RETURN node1.name as name,node2.from as from,node2.to as to,ID(node1) as id LIMIT 1000";
         eventBus.consumer("tournaments-and-dates").handler(message -> message.reply(queryArrayWithCypher(queryTournamentsAndDate, "name", "from", "to", "id")));
 
+        String tournamentByTournamentId = "MATCH (node1:Tournament)-[r:HAS_DATE]->(node2:Duration) WHERE ID(node1)=param1 RETURN node1.name as name,node2.from as from,node2.to as to,ID(node1) as id  LIMIT 1000";
+        eventBus.consumer("getDetailsForTournament").handler(message -> message.reply(queryArrayWithCypher(tournamentByTournamentId.replaceAll("param1",message.body().toString()) , "name","from")));
 
-        String tournamentByTournamentId = "MATCH (node1:Tournament) WHERE ID(node1)=param1 RETURN node1.name as name LIMIT 1000";
-        eventBus.consumer("getDetailsForTournament").handler(message -> message.reply(queryArrayWithCypher(tournamentByTournamentId.replaceAll("param1",message.body().toString()) , "name")));
+        String playersByTournamentId = "MATCH (node1:Tournament)-[r:HAS_DATE]->(node2:Duration) WHERE ID(node1)=param1 RETURN node1.name as name,node2.from as from,node2.to as to,ID(node1) as id  LIMIT 1000";
+        eventBus.consumer("getDetailsForTournament").handler(message -> message.reply(queryArrayWithCypher(tournamentByTournamentId.replaceAll("param1",message.body().toString()) , "name","from")));
+
+        eventBus.consumer("getPlayerCountForTournament").handler(message -> message.reply(queryPlayerCount(message.body().toString())));
 
         eventBus.consumer("score-sorted").handler(message -> message.reply(scoreSorted(message.body().toString())));
 
@@ -60,11 +63,48 @@ public class PersistenceVerticle extends AbstractVerticle {
 
     }
 
+    private ClusterSerializable queryCourses() {
+        JsonArray jsonArray = new JsonArray();
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","1. SGC Essen 2010")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","1. SGC Westenholz")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Allgäu-Bodensee")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Alling")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Brohltal")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Linz")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Harz")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Horbach 08")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Iserloy")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Paulushofen")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGG Schwansen")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGV Renningen")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGSHG Flensburg")));
+        return jsonArray;
+    }
+
+    private ClusterSerializable queryClubs() {
+        JsonArray jsonArray = new JsonArray();
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","1. SGC Essen 2010")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","1. SGC Westenholz")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Allgäu-Bodensee")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Alling")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Brohltal")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Linz")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Harz")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Horbach 08")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Iserloy")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGC Paulushofen")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGG Schwansen")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGV Renningen")));
+        jsonArray.add(new JsonObject(Collections.singletonMap("name","SGSHG Flensburg")));
+        return jsonArray;
+    }
+
     private ClusterSerializable scoreSorted(String tournamentId) {
         Map<Integer, List<Integer>> group = queryIntegerListMap(tournamentId);
         JsonArray jsonArray = new JsonArray(new LinkedList(group.keySet()));
         return jsonArray;
     }
+
     private ClusterSerializable scoreSortedCount(String tournamentId) {
         Map<Integer, List<Integer>> group = queryIntegerListMap(tournamentId);
         JsonArray jsonArray = new JsonArray();
@@ -73,6 +113,13 @@ public class PersistenceVerticle extends AbstractVerticle {
         jsonObject.put("label", "Punkte");
         jsonArray.add(jsonObject);
         return jsonArray;
+    }
+
+    private Integer queryPlayerCount(String tournamentId) {
+        String queryScores = "MATCH (node1:Tournament)-[:HAS_GAME]->(node2:Game),(node3:Score)-[:WAS_PLAYED_IN_GAME]->(node2) WHERE ID(node1)="+tournamentId+" RETURN count(node3.score) as score LIMIT 10000";
+        Session session = driver.session();
+        StatementResult result = session.run(queryScores);
+        return result.next().get("score").asInt() / 18;
     }
 
     private Map<Integer, List<Integer>> queryIntegerListMap(String tournamentId) {

@@ -7,7 +7,7 @@
                 Spieler
             </div>
             <div class="card-block">
-                <h1>50</h1>
+                <h1>{{playerCount}}</h1>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
                 Datum
             </div>
             <div class="card-block bg-white">
-                <h1>12</h1>
+                <h1>{{tournaments[0].from | date:'dd.MM.yyyy'}}</h1>
             </div>
         </div>
     </div>
@@ -44,14 +44,12 @@
                 <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
                 </canvas>
             </div>
-            <div class="card-footer">
-            </div>
         </div>
     </div>
     <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
-                    Pie Chart
+                    Verteilung je Punktzahl
                 </div>
                 <div class="card-block">
                     <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">

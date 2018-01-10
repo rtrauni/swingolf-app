@@ -11,6 +11,7 @@ import { EventbusService } from './../../eventbus.service';
 export class TournamentdetailComponent implements OnInit {
   private eventBusService: EventbusService;
   private tournamentId: String;
+  public playerCount: String;
   tournaments: Array<any> = ["{name:''}"];
       public barChartOptions: any = {
           scaleShowVerticalLines: false,
@@ -51,6 +52,11 @@ export class TournamentdetailComponent implements OnInit {
       this.pieChartData = scoreSortedCount;
       console.log(scoreSortedCount);
     });
+
+        this.eventBusService.getPlayerCountForTournament(this.tournamentId).subscribe(scoreSortedCount => {
+          this.playerCount = scoreSortedCount;
+          console.log(scoreSortedCount);
+        });
 
   }
 }
