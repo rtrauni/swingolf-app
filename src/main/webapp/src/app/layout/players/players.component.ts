@@ -18,7 +18,7 @@ export class PlayersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.eventBusService.getActiveUsersAndLicense().subscribe(players => {
+    this.eventBusService.getUsersTest().subscribe(players => {
       this.players = players;
       console.log(this.players);
     });

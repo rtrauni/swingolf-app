@@ -3,7 +3,7 @@ MATCH (n) DETACH DELETE n
 CREATE (andrea:User {firstname:'Andrea', lastname:'Traunmüller', email:'andrea.traunmueller@xyz.at'})
 CREATE (rudolf:User {firstname:'Rudolf', lastname:'Traunmüller', email:'rudolf.traunmueller@xyz.at'})
 CREATE (wolfgang:User {firstname:'Wolfgang', lastname:'Traunmüller', email:'wolfgang.traunmueller@xyz.at'})
-CREATE (inactiveuser:User {firstname:'Inactive User', lastname:'Inactive User', email:'inactive@xyz.at'})
+CREATE (inactiveiay²³k  ulp b#ll.< User {firstname:'Inactive User', lastname:'Inactive User', email:'inactive@xyz.at'})
 
 // ################################ assign licenses ################################
 CREATE (andreaLicense:License {license:'007-0001'})

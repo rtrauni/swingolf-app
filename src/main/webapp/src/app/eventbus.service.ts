@@ -14,6 +14,10 @@ export class EventbusService {
     return this.eventBus.rxSend('users', 'query').map(message => message.body);
   }
 
+  getUsersTest(): Observable<any> {
+    return this.eventBus.rxSend('userstest', 'query').map(message => message.body);
+  }
+
   getDetailsForUser(license: String) {
     return this.eventBus.rxSend('getDetailsForUser', license).map(message => message.body);
   }

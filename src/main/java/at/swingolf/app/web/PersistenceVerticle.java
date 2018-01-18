@@ -5,6 +5,8 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.shareddata.impl.ClusterSerializable;
 import io.vertx.rxjava.core.AbstractVerticle;
 import io.vertx.rxjava.core.eventbus.EventBus;
+import io.vertx.rxjava.core.eventbus.Message;
+import io.vertx.rxjava.core.http.HttpClient;
 import org.apache.commons.lang3.time.StopWatch;
 import org.neo4j.driver.internal.value.IntegerValue;
 import org.neo4j.driver.v1.*;
@@ -25,12 +27,12 @@ public class PersistenceVerticle extends AbstractVerticle {
         System.out.println("started neo4j");
 
         initQueries();
-
     }
 
     private void initQueries() {
         EventBus eventBus = vertx.eventBus();
 
+        eventBus.consumer("userstest").handler(message -> consumeRest("http://localhost:8080/users",message));
         eventBus.consumer("users").handler(message -> message.reply(queryArrayByNodeLabel("User", "firstname", "lastname", "email")));
 //        eventBus.consumer("courses").handler(message -> message.reply(queryArrayByNodeLabel("Course", "name")));
         eventBus.consumer("courses").handler(message -> message.reply(queryCourses()));
@@ -62,6 +64,21 @@ public class PersistenceVerticle extends AbstractVerticle {
         eventBus.consumer("score-sorted-count").handler(message -> message.reply(scoreSortedCount(message.body().toString())));
 
     }
+
+    private String consumeRest(String s, Message<Object> message) {
+        final HttpClient httpClient = vertx.createHttpClient();
+
+        final String url = s;
+        httpClient.getAbs(url, response -> {
+            if (response.statusCode() != 200) {
+                System.err.println("fail");
+            } else {
+
+                response.bodyHandler(b -> message.reply(new JsonArray(b.toString())));
+            }
+        }).end();
+      return s;
+    };
 
     private ClusterSerializable queryCourses() {
         JsonArray jsonArray = new JsonArray();
