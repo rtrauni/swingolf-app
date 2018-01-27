@@ -32,8 +32,8 @@ public class PersistenceVerticle extends AbstractVerticle {
     private void initQueries() {
         EventBus eventBus = vertx.eventBus();
 
-        eventBus.consumer("userstest").handler(message -> consumeRest("http://localhost:8080/users",message));
-        eventBus.consumer("users").handler(message -> message.reply(queryArrayByNodeLabel("User", "firstname", "lastname", "email")));
+        eventBus.consumer("users").handler(message -> consumeRest("http://localhost:8079/users",message));
+//        eventBus.consumer("users").handler(message -> message.reply(queryArrayByNodeLabel("User", "firstname", "lastname", "email")));
 //        eventBus.consumer("courses").handler(message -> message.reply(queryArrayByNodeLabel("Course", "name")));
         eventBus.consumer("courses").handler(message -> message.reply(queryCourses()));
 //        eventBus.consumer("clubs").handler(message -> message.reply(queryArrayByNodeLabel("Club", "name")));
@@ -43,7 +43,8 @@ public class PersistenceVerticle extends AbstractVerticle {
         eventBus.consumer("getDetailsForUser").handler(message -> message.reply(queryArrayWithCypher(queryUserByLicense.replaceAll("param1",message.body().toString()) , "firstname", "lastname", "email", "license")));
 
         String queryUserAndLicense = "MATCH (node1:User) OPTIONAL MATCH (node1)-[r:HAS_LICENSE{}]->(node2:License) RETURN node1.firstname as firstname,node1.lastname as lastname,node1.email as email,node2.license as license LIMIT 1000";
-        eventBus.consumer("users-and-license").handler(message -> message.reply(queryArrayWithCypher(queryUserAndLicense, "firstname", "lastname", "email", "license")));
+//        eventBus.consumer("users-and-license").handler(message -> message.reply(queryArrayWithCypher(queryUserAndLicense, "firstname", "lastname", "email", "license")));
+        eventBus.consumer("users-and-license").handler(message -> consumeRest("http://localhost:8079/users-and-license",message));
 
         String queryActiveUserAndLicense = "MATCH (node1:User)-[r:HAS_LICENSE]->(node2:License)-[s:IS_ACTIVE]->(node3:Duration) WHERE not exists(node3.to)  RETURN node1.firstname as firstname,node1.lastname as lastname,node1.email as email,node2.license as license,node3.from as from,node3.to as to ORDER BY license ASC LIMIT 10000";
         eventBus.consumer("active-users-and-license").handler(message -> message.reply(queryArrayWithCypher(queryActiveUserAndLicense, "firstname", "lastname", "email", "license","from","to")));
