@@ -14,6 +14,8 @@ import { routerTransition } from '../../router.animations';
 export class TournamentsComponent implements OnInit {
   private eventBusService: EventbusService;
   tournaments: Observable<Array<any>>;
+  previoustournaments: Observable<Array<any>>;
+  nexttournaments: Observable<Array<any>>;
 
   constructor(eventbusService: EventbusService){
     this.eventBusService = eventbusService;
@@ -25,6 +27,14 @@ export class TournamentsComponent implements OnInit {
       this.tournaments = tournaments;
       console.log(this.tournaments);
     });
+        this.eventBusService.getPrevious3Tournaments().subscribe(tournaments => {
+            this.previoustournaments = tournaments;
+            console.log(this.tournaments);
+        });
+        this.eventBusService.getNext3Tournaments().subscribe(tournaments => {
+            this.nexttournaments = tournaments;
+            console.log(this.tournaments);
+        });
   }
 
 }

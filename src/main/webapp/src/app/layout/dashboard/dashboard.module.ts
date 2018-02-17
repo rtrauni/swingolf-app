@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { EventbusService } from './../../eventbus.service';
+import { TranslateModule } from '@ngx-translate/core';
+
 import {
     NgbCarouselModule,
     NgbAlertModule
@@ -20,6 +23,7 @@ import { StatModule } from '../../shared';
         CommonModule,
         NgbCarouselModule.forRoot(),
         NgbAlertModule.forRoot(),
+        TranslateModule,
         DashboardRoutingModule,
         StatModule,
     ],

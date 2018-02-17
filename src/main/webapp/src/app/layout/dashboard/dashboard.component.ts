@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { routerTransition } from '../../router.animations';
+import { EventbusService } from './../../eventbus.service';
+import { Subject, Observable, Subscription } from 'rxjs/Rx';
 
 @Component({
     selector: 'app-dashboard',
@@ -11,7 +14,12 @@ export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
 
-    constructor() {
+    private eventBusService: EventbusService;
+    tournaments: Observable<Array<any>>;
+
+  constructor(eventbusService: EventbusService){
+    this.eventBusService = eventbusService;
+
 
 
 
@@ -110,6 +118,7 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
+
     }
 
     public closeAlert(alert: any) {

@@ -33,6 +33,8 @@ public class PersistenceVerticle extends AbstractVerticle {
         EventBus eventBus = vertx.eventBus();
 
         eventBus.consumer("users").handler(message -> consumeRest("http://localhost:8079/users",message));
+        eventBus.consumer("tournaments-previous3").handler(message -> consumeRest("http://localhost:8079/tournaments-previous3",message));
+        eventBus.consumer("tournaments-next3").handler(message -> consumeRest("http://localhost:8079/tournaments-next3",message));
 //        eventBus.consumer("users").handler(message -> message.reply(queryArrayByNodeLabel("User", "firstname", "lastname", "email")));
 //        eventBus.consumer("courses").handler(message -> message.reply(queryArrayByNodeLabel("Course", "name")));
         eventBus.consumer("courses").handler(message -> message.reply(queryCourses()));
@@ -67,6 +69,7 @@ public class PersistenceVerticle extends AbstractVerticle {
     }
 
     private String consumeRest(String s, Message<Object> message) {
+        System.out.println("consuming "+s);
         final HttpClient httpClient = vertx.createHttpClient();
 
         final String url = s;

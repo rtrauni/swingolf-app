@@ -17,3 +17,7 @@ ng generate component layout/persondetail
 
 ng build 
 scp -r * root@db.swingolf.at:/opt/swingolf-app/jenkins_home/webroot/
+
+# Questions 
+Eventbus on dashboard doesn't work
+Slider on dashboard is distorted

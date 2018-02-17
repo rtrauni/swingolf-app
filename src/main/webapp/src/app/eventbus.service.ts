@@ -6,8 +6,8 @@ import { EventBus } from 'vertx3-eventbus-rx-client';
 export class EventbusService {
   eventBus: EventBus;
   constructor() {
-    this.eventBus = EventBus.create("https://db.swingolf.at/eventbus");
-    //this.eventBus = EventBus.create("http://localhost:8088/eventbus");
+    //this.eventBus = EventBus.create("https://db.swingolf.at/eventbus");
+    this.eventBus = EventBus.create("http://localhost:8088/eventbus");
   }
 
   getUsers(): Observable<any> {
@@ -44,6 +44,14 @@ export class EventbusService {
 
   getTournamentsAndDates(): Observable<any> {
     return this.eventBus.rxSend('tournaments-and-dates', 'query').map(message => message.body);
+  }
+
+  getPrevious3Tournaments(): Observable<any> {
+    return this.eventBus.rxSend('tournaments-previous3', 'query').map(message => message.body);
+  }
+
+  getNext3Tournaments(): Observable<any> {
+    return this.eventBus.rxSend('tournaments-next3', 'query').map(message => message.body);
   }
 
   getPlayerCountForTournament(tournamentId: String): Observable<any> {
