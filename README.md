@@ -19,5 +19,16 @@ ng build
 scp -r * root@db.swingolf.at:/opt/swingolf-app/jenkins_home/webroot/
 
 # Questions 
+Frontend questions
 Eventbus on dashboard doesn't work
 Slider on dashboard is distorted
+ng build prod doesn't work
+how to upgrade
+* typescript
+* angular
+* sb2-admin
+* bootstrap
+* material
+
+Improvements
+* sort tournaments by date
