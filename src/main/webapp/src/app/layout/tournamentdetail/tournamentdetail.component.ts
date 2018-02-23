@@ -12,6 +12,7 @@ export class TournamentdetailComponent implements OnInit {
   private eventBusService: EventbusService;
   private tournamentId: String;
   public playerCount: String;
+  players: Observable<Array<any>>;
   tournaments: Array<any> = ["{name:''}"];
       public barChartOptions: any = {
           scaleShowVerticalLines: false,
@@ -57,6 +58,11 @@ export class TournamentdetailComponent implements OnInit {
           this.playerCount = scoreSortedCount;
           console.log(scoreSortedCount);
         });
+
+    this.eventBusService.getUsersByTournament(this.tournamentId).subscribe(players => {
+      this.players= players;
+      console.log(players);
+    });
 
   }
 }
