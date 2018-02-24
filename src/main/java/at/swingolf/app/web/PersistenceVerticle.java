@@ -34,6 +34,7 @@ public class PersistenceVerticle extends AbstractVerticle {
 
         eventBus.consumer("users").handler(message -> consumeRest("http://localhost:8079/users",message));
         eventBus.consumer("tournaments-previous3").handler(message -> consumeRest("http://localhost:8079/tournaments-previous3",message));
+        eventBus.consumer("tournaments-previous3-by-user").handler(message -> consumeRest("http://localhost:8079/tournaments-previous3-by-player?license="+message.body().toString(),message));
         eventBus.consumer("tournaments-next3").handler(message -> consumeRest("http://localhost:8079/tournaments-next3",message));
         eventBus.consumer("users-by-tournament").handler(message -> consumeRest("http://localhost:8079/usersByTournament?tournamentId="+message.body().toString(),message));
 //        eventBus.consumer("users").handler(message -> message.reply(queryArrayByNodeLabel("User", "firstname", "lastname", "email")));

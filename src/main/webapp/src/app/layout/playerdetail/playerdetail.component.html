@@ -1,2 +1,24 @@
 <h2 class="text-muted">{{players[0].firstname}} {{players[0].lastname}} / {{players[0].license}}</h2>
 <hr>
+<div class="row">
+    <div class="col col-xl-12 col-lg-12">
+        <div class="card mb-3">
+            <div class="card-block table-responsive">
+                <table class="table">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>{{'Previous Tournaments' | translate}}</th>
+                        <th>{{'Date' | translate}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let tournament of previoustournaments">
+                        <th scope="row"><a routerLink="../tournamentdetail/{{tournament.id}}">{{tournament.name}}</a></th>
+                        <td>{{tournament.from | date:'dd.MM.yyyy'}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

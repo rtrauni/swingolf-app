@@ -13,6 +13,7 @@ export class PlayerdetailComponent implements OnInit {
   private license: String;
   public alerts: Array<any> = [];
   public sliders: Array<any> = [];
+  previoustournaments: Observable<Array<any>>;
 
   players: Array<any> = ["{firstname:''}"];
 
@@ -26,6 +27,11 @@ export class PlayerdetailComponent implements OnInit {
       this.players = players;
       console.log(players);
     });
+    this.eventBusService.getPrevious3TournamentsByUser(this.license).subscribe(tournaments => {
+       this.previoustournaments = tournaments;
+       console.log(this.previoustournaments);
+    });
+
   }
 
 }

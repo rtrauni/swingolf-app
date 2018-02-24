@@ -50,6 +50,10 @@ export class EventbusService {
     return this.eventBus.rxSend('tournaments-previous3', 'query').map(message => message.body);
   }
 
+  getPrevious3TournamentsByUser(license: String): Observable<any> {
+    return this.eventBus.rxSend('tournaments-previous3-by-user', license).map(message => message.body);
+  }
+
   getNext3Tournaments(): Observable<any> {
     return this.eventBus.rxSend('tournaments-next3', 'query').map(message => message.body);
   }
