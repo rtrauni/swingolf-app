@@ -6,8 +6,8 @@ import { EventBus } from 'vertx3-eventbus-rx-client';
 export class EventbusService {
   eventBus: EventBus;
   constructor() {
-    //this.eventBus = EventBus.create("https://db.swingolf.at/eventbus");
-    this.eventBus = EventBus.create("http://localhost:8088/eventbus");
+    this.eventBus = EventBus.create("https://db.swingolf.at/eventbus");
+    //this.eventBus = EventBus.create("http://localhost:8088/eventbus");
   }
 
   getUsers(): Observable<any> {
