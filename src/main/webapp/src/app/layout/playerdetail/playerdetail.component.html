@@ -1,6 +1,41 @@
 <h2 class="text-muted">{{players[0].firstname}} {{players[0].lastname}} / {{players[0].license}}</h2>
 <hr>
 <div class="row">
+    <div class="col-sm-4">
+        <div class="card mb-3">
+            <div class="card-header card-default">
+                Turniere heuer
+            </div>
+            <div class="card-block">
+                <h1>{{thisyeartournamentslength}}</h1>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-sm-4 -->
+    <div class="col-sm-4">
+        <div class="card mb-3">
+            <div class="card-header card-default">
+                Alle Turniere
+            </div>
+            <div class="card-block bg-white">
+                <h1>{{alltournamentslength}}</h1>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-sm-4 -->
+    <div class="col-sm-4">
+    <div class="card mb-3">
+    <div class="card-header">
+
+    </div>
+    <div class="card-block bg-white">
+        <img [attr.src]="playerURL" width="100%"/>
+    </div>
+    </div>
+    </div>
+</div>
+<hr>
+<div class="row">
     <div class="col col-xl-12 col-lg-12">
         <div class="card mb-3">
             <div class="card-block table-responsive">

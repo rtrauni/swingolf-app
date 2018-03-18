@@ -11,9 +11,14 @@ import { EventbusService } from './../../eventbus.service';
 export class PlayerdetailComponent implements OnInit {
   private eventBusService: EventbusService;
   private license: String;
+  private playerURL: String = "https://db.swingolf.at/assets/images/players/007-0020.jpg";
   public alerts: Array<any> = [];
   public sliders: Array<any> = [];
   previoustournaments: Observable<Array<any>>;
+  thisyeartournaments: Observable<Array<any>>;
+  alltournaments: Observable<Array<any>>;
+  thisyeartournamentslength: number = 0;
+  alltournamentslength: number= 0;
 
   players: Array<any> = ["{firstname:''}"];
 
@@ -30,6 +35,16 @@ export class PlayerdetailComponent implements OnInit {
     this.eventBusService.getPrevious3TournamentsByUser(this.license).subscribe(tournaments => {
        this.previoustournaments = tournaments;
        console.log(this.previoustournaments);
+    });
+    this.eventBusService.getAllTournamentsByUser(this.license).subscribe(tournaments => {
+       this.alltournaments = tournaments;
+       this.alltournamentslength= tournaments.length;
+       console.log(this.alltournaments);
+    });
+    this.eventBusService.getThisYearTournamentsByUser(this.license).subscribe(tournaments => {
+       this.thisyeartournaments = tournaments;
+       this.thisyeartournamentslength= tournaments.length;
+       console.log(this.thisyeartournaments);
     });
 
   }
