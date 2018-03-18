@@ -18,6 +18,9 @@ ng generate component layout/persondetail
 ng build 
 scp -r * root@db.swingolf.at:/opt/swingolf-app/jenkins_home/webroot/
 
+images
+scp -r * root@db.swingolf.at:/opt/swingolf-app/jenkins_home/webroot/
+
 # Questions 
 Frontend questions
 Eventbus on dashboard doesn't work
