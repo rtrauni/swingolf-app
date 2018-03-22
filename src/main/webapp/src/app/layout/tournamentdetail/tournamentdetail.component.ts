@@ -59,7 +59,7 @@ export class TournamentdetailComponent implements OnInit {
           console.log(scoreSortedCount);
         });
 
-    this.eventBusService.getUsersByTournament(this.tournamentId).subscribe(players => {
+    this.eventBusService.getUsersByTournamentSortedByScore(this.tournamentId).subscribe(players => {
       this.players= players;
       console.log(players);
     });

@@ -23,6 +23,50 @@
         </div>
     </div>
     <!-- /.col-sm-4 -->
+    <div class="col-sm-4">
+        <div class="card mb-3">
+            <div class="card-header card-default">
+                Ort
+            </div>
+            <div class="card-block bg-white">
+                <h1>TBD</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card mb-3">
+            <div class="card-header card-default">
+                Beste Runde (Durchschnitt)
+            </div>
+            <div class="card-block">
+                <h1>TBD (TBD)</h1>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-sm-4 -->
+    <div class="col-sm-4">
+        <div class="card mb-3">
+            <div class="card-header card-default">
+                Beste Bahn (Durchschnitt)
+            </div>
+            <div class="card-block bg-white">
+                <h1>{{tournaments[0].from | date:'dd.MM.yyyy'}}</h1>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-sm-4 -->
+    <div class="col-sm-4">
+        <div class="card mb-3">
+            <div class="card-header card-default">
+                Korrekturwert
+            </div>
+            <div class="card-block bg-white">
+                <h1>TBD</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.col-sm-4 -->
     <!--<div class="col-sm-4">-->
         <!--<div class="card mb-3">-->
             <!--<div class="card-header">-->
@@ -33,6 +77,32 @@
             <!--</div>-->
         <!--</div>-->
     <!--</div>-->
+</div>
+<div class="row">
+    <div class="col col-xl-12 col-lg-12">
+        <div class="card mb-3">
+            <div class="card-block table-responsive">
+                <table class="table">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>{{'Lizenz' | translate}}</th>
+                        <th>Vorname</th>
+                        <th>Nachname</th>
+                        <th>Ergebnis</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let player of players">
+                        <th scope="row"><a routerLink="../../playerdetail/{{player.license}}">{{player.license}}</a></th>
+                        <td>{{player.firstname}}</td>
+                        <td>{{player.lastname}}</td>
+                        <td>{{player.score}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="row">
     <div class="col col-sm-6">
@@ -57,28 +127,5 @@
                 </div>
             </div>
     </div>
-    <div class="row">
-        <div class="col col-xl-12 col-lg-12">
-            <div class="card mb-3">
-                <div class="card-block table-responsive">
-                    <table class="table">
-                        <thead class="thead-inverse">
-                        <tr>
-                            <th>{{'Lizenz' | translate}}</th>
-                            <th>Vorname</th>
-                            <th>Nachname</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr *ngFor="let player of players">
-                            <th scope="row"><a routerLink="../../playerdetail/{{player.license}}">{{player.license}}</a></th>
-                            <td>{{player.firstname}}</td>
-                            <td>{{player.lastname}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>

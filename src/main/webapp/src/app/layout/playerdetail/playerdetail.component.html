@@ -4,10 +4,26 @@
     <div class="col-sm-4">
         <div class="card mb-3">
             <div class="card-header card-default">
+                Handicap
+            </div>
+            <div class="card-block">
+                <h1>TBD</h1>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header card-default">
                 Turniere heuer
             </div>
             <div class="card-block">
                 <h1>{{thisyeartournamentslength}}</h1>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header card-default">
+                Bester Score heuer
+            </div>
+            <div class="card-block">
+                <h1>TBD</h1>
             </div>
         </div>
     </div>
@@ -15,10 +31,26 @@
     <div class="col-sm-4">
         <div class="card mb-3">
             <div class="card-header card-default">
+                Kategorie
+            </div>
+            <div class="card-block bg-white">
+                <h1>TBD</h1>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header card-default">
                 Alle Turniere
             </div>
             <div class="card-block bg-white">
                 <h1>{{alltournamentslength}}</h1>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header card-default">
+                Bester Score (jeher)
+            </div>
+            <div class="card-block">
+                <h1>TBD</h1>
             </div>
         </div>
     </div>
@@ -33,6 +65,7 @@
     </div>
     </div>
     </div>
+
 </div>
 <hr>
 <div class="row">
@@ -48,7 +81,7 @@
                     </thead>
                     <tbody>
                     <tr *ngFor="let tournament of previoustournaments">
-                        <th scope="row"><a routerLink="../tournamentdetail/{{tournament.id}}">{{tournament.name}}</a></th>
+                        <th scope="row"><a routerLink="../../tournamentdetail/{{tournament.id}}">{{tournament.name}}</a></th>
                         <td>{{tournament.from | date:'dd.MM.yyyy'}}</td>
                     </tr>
                     </tbody>

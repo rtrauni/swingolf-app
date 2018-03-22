@@ -70,8 +70,8 @@ export class EventbusService {
                                                                            return this.eventBus.rxSend('getPlayerCountForTournament', tournamentId).map(message => message.body);
                                                                          }
 
-  getUsersByTournament(tournamentId: String): Observable<any> {
-    return this.eventBus.rxSend('users-by-tournament', tournamentId).map(message => message.body);
+  getUsersByTournamentSortedByScore(tournamentId: String): Observable<any> {
+    return this.eventBus.rxSend('users-by-tournament-sorted-by-score', tournamentId).map(message => message.body);
   }
 
   getScoreSorted(tournamentId: String): Observable<any> {
