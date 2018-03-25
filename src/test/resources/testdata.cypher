@@ -1,9 +1,9 @@
 MATCH (n) DETACH DELETE n
 // ################################ create users ################################
-CREATE (andrea:User {firstname:'Andrea', lastname:'Traunmüller', email:'andrea.traunmueller@xyz.at'})
-CREATE (rudolf:User {firstname:'Rudolf', lastname:'Traunmüller', email:'rudolf.traunmueller@xyz.at'})
-CREATE (wolfgang:User {firstname:'Wolfgang', lastname:'Traunmüller', email:'wolfgang.traunmueller@xyz.at'})
-CREATE (inactiveiay²³k  ulp b#ll.< User {firstname:'Inactive User', lastname:'Inactive User', email:'inactive@xyz.at'})
+CREATE (andrea:User {firstname:'Andrea', lastname:'Traunmüller', email:'andrea.traunmueller@xyz.at', handicap:'5.4', category:'SF1'})
+CREATE (rudolf:User {firstname:'Rudolf', lastname:'Traunmüller', email:'rudolf.traunmueller@xyz.at', handicap:'5.4', category:'SH1'})
+CREATE (wolfgang:User {firstname:'Wolfgang', lastname:'Traunmüller', email:'wolfgang.traunmueller@xyz.at', handicap:'5.4', category:'SH1'})
+CREATE (inactiveiay²³k  ulp b#ll.< User {firstname:'Inactive User', lastname:'Inactive User', email:'inactive@xyz.at', handicap:'5.4', category:'SH1'})
 
 // ################################ assign licenses ################################
 CREATE (andreaLicense:License {license:'007-0001'})
