@@ -36,6 +36,10 @@ public class PersistenceVerticle extends AbstractVerticle {
         eventBus.consumer("tournaments-previous3").handler(message -> consumeRest("http://localhost:8079/tournaments-previous3",message));
         eventBus.consumer("tournaments-previous3-by-user").handler(message -> consumeRest("http://localhost:8079/tournaments-previous3-by-player?license="+message.body().toString(),message));
         eventBus.consumer("tournaments-this-year-by-user").handler(message -> consumeRest("http://localhost:8079/tournaments-this-year-by-player?license="+message.body().toString(),message));
+        eventBus.consumer("best-score-this-year-by-player").handler(message -> consumeRest("http://localhost:8079/bestScoreThiyYearByPlayer?license="+message.body().toString(),message));
+        eventBus.consumer("best-score-by-player").handler(message -> consumeRest("http://localhost:8079/bestScoreByPlayer?license="+message.body().toString(),message));
+        eventBus.consumer("user-by-license").handler(message -> consumeRest("http://localhost:8079/userByLicense?license="+message.body().toString(),message));
+
         eventBus.consumer("tournaments-all-by-user").handler(message -> consumeRest("http://localhost:8079/tournaments-all-by-player?license="+message.body().toString(),message));
         eventBus.consumer("tournaments-next3").handler(message -> consumeRest("http://localhost:8079/tournaments-next3",message));
         eventBus.consumer("users-by-tournament").handler(message -> consumeRest("http://localhost:8079/usersByTournament?tournamentId="+message.body().toString(),message));
@@ -47,7 +51,7 @@ public class PersistenceVerticle extends AbstractVerticle {
         eventBus.consumer("clubs").handler(message -> message.reply(queryClubs()));
 
         String queryUserByLicense = "MATCH (node1:User) MATCH (node1)-[r:HAS_LICENSE{}]->(node2:License {license:\"param1\"}) RETURN node1.firstname as firstname,node1.lastname as lastname,node1.email as email,node2.license as license ORDER BY license ASC LIMIT 10000";
-        eventBus.consumer("getDetailsForUser").handler(message -> message.reply(queryArrayWithCypher(queryUserByLicense.replaceAll("param1",message.body().toString()) , "firstname", "lastname", "email", "license")));
+        eventBus.consumer("getDetailsForUser").handler(message -> message.reply(queryArrayWithCypher(queryUserByLicense.replaceAll("param1",message.body().toString()) , "firstname", "lastname", "email", "license","category","handicap")));
 
         String queryUserAndLicense = "MATCH (node1:User) OPTIONAL MATCH (node1)-[r:HAS_LICENSE{}]->(node2:License) RETURN node1.firstname as firstname,node1.lastname as lastname,node1.email as email,node2.license as license LIMIT 1000";
 //        eventBus.consumer("users-and-license").handler(message -> message.reply(queryArrayWithCypher(queryUserAndLicense, "firstname", "lastname", "email", "license")));

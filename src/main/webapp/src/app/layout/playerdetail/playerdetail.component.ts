@@ -11,6 +11,8 @@ import { EventbusService } from './../../eventbus.service';
 export class PlayerdetailComponent implements OnInit {
   private eventBusService: EventbusService;
   private license: String;
+  private bestScoreThisYear: String;
+  private bestScore: String;
   private playerURL: String = "https://db.swingolf.at/assets/images/players/007-0020.jpg";
   public alerts: Array<any> = [];
   public sliders: Array<any> = [];
@@ -21,6 +23,7 @@ export class PlayerdetailComponent implements OnInit {
   alltournamentslength: number= 0;
 
   players: Array<any> = ["{firstname:''}"];
+  players2: Array<any> = ["{firstname:''}"];
 
   constructor(private route: ActivatedRoute, eventbusService: EventbusService) {
     this.route.params.subscribe( params => {this.license=params['id'];console.log(params);} );
@@ -28,9 +31,21 @@ export class PlayerdetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.eventBusService.getBestScoreThisYear(this.license).subscribe(bestScore => {
+      this.bestScoreThisYear = bestScore;
+      console.log(bestScore);
+    });
+    this.eventBusService.getBestScore(this.license).subscribe(bestScore => {
+      this.bestScore = bestScore;
+      console.log(bestScore);
+    });
     this.eventBusService.getDetailsForUser(this.license).subscribe(players => {
       this.players = players;
       console.log(players);
+    });
+    this.eventBusService.getDetailsForUser2(this.license).subscribe(players2 => {
+      this.players2 = players2;
+      console.log(players2);
     });
     this.eventBusService.getPrevious3TournamentsByUser(this.license).subscribe(tournaments => {
        this.previoustournaments = tournaments;
