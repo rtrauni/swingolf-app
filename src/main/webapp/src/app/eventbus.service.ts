@@ -6,8 +6,8 @@ import { EventBus } from 'vertx3-eventbus-rx-client';
 export class EventbusService {
   eventBus: EventBus;
   constructor() {
-    //this.eventBus = EventBus.create("https://db.swingolf.at/eventbus");
-    this.eventBus = EventBus.create("http://localhost:8088/eventbus");
+    this.eventBus = EventBus.create("https://db.swingolf.at/eventbus");
+    //this.eventBus = EventBus.create("http://localhost:8088/eventbus");
   }
 
   getUsers(): Observable<any> {
@@ -92,6 +92,22 @@ export class EventbusService {
 
   getScoreSortedCount(tournamentId: String): Observable<any> {
                         return this.eventBus.rxSend('score-sorted-count', tournamentId).map(message => message.body);
+                      }
+
+  getBestScore1(tournamentId: String): Observable<any> {
+                        return this.eventBus.rxSend('best-score-by-tournament', tournamentId).map(message => message.body);
+                      }
+
+  getAverageScore(tournamentId: String): Observable<any> {
+                        return this.eventBus.rxSend('average-score-by-tournament', tournamentId).map(message => message.body);
+                      }
+
+  getBestTrack(tournamentId: String): Observable<any> {
+                        return this.eventBus.rxSend('best-track-by-tournament', tournamentId).map(message => message.body);
+                      }
+
+  getAverageTrack(tournamentId: String): Observable<any> {
+                        return this.eventBus.rxSend('average-track-by-tournament', tournamentId).map(message => message.body);
                       }
 
 }

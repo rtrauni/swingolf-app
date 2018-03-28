@@ -11,7 +11,13 @@ import { EventbusService } from './../../eventbus.service';
 export class TournamentdetailComponent implements OnInit {
   private eventBusService: EventbusService;
   private tournamentId: String;
+  private bestTrack: String;
+  private averageTrack: String;
+  private bestScore: String;
+  private averageScore: String;
+
   public playerCount: String;
+
   players: Observable<Array<any>>;
   tournaments: Array<any> = ["{name:''}"];
       public barChartOptions: any = {
@@ -62,6 +68,27 @@ export class TournamentdetailComponent implements OnInit {
     this.eventBusService.getUsersByTournamentSortedByScore(this.tournamentId).subscribe(players => {
       this.players= players;
       console.log(players);
+    });
+
+    this.eventBusService.getBestScore1(this.tournamentId).subscribe(bestScore => {
+      this.bestScore= bestScore;
+      console.log(bestScore);
+    });
+
+
+    this.eventBusService.getAverageScore(this.tournamentId).subscribe(averageScore => {
+      this.averageScore= averageScore;
+      console.log(averageScore);
+    });
+
+    this.eventBusService.getBestTrack(this.tournamentId).subscribe(bestTrack => {
+      this.bestTrack= bestTrack;
+      console.log(bestTrack);
+    });
+
+    this.eventBusService.getAverageTrack(this.tournamentId).subscribe(averageTrack => {
+      this.averageTrack= averageTrack;
+      console.log(averageTrack);
     });
 
   }

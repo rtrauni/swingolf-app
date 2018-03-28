@@ -1,4 +1,5 @@
 $topnav-background-color: #222;
+@import "_override";
 .sidebar{
     border-radius: 0;
     position: fixed;
@@ -25,7 +26,7 @@ $topnav-background-color: #222;
             background: $topnav-background-color;
             border: 0;
             border-radius: 0;
-            color: #999;
+            color: #fff;
             text-decoration: none;
             .fa {
                 margin-right: 10px;

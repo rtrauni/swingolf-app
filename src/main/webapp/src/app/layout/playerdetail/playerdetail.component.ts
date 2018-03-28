@@ -33,10 +33,12 @@ export class PlayerdetailComponent implements OnInit {
   ngOnInit() {
     this.eventBusService.getBestScoreThisYear(this.license).subscribe(bestScore => {
       this.bestScoreThisYear = bestScore;
+      this.bestScoreThisYear = this.bestScoreThisYear === null ? "-" : bestScore;
       console.log(bestScore);
     });
     this.eventBusService.getBestScore(this.license).subscribe(bestScore => {
       this.bestScore = bestScore;
+      this.bestScore = this.bestScore === null ? "-" : bestScore;
       console.log(bestScore);
     });
     this.eventBusService.getDetailsForUser(this.license).subscribe(players => {

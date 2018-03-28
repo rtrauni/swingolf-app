@@ -29,7 +29,7 @@
                 Ort
             </div>
             <div class="card-block bg-white">
-                <h1>TBD</h1>
+                <h1>{{tournaments[0].location}}</h1>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
                 Beste Runde (Durchschnitt)
             </div>
             <div class="card-block">
-                <h1>TBD (TBD)</h1>
+                <h1>{{bestScore}} ({{averageScore}})</h1>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
                 Beste Bahn (Durchschnitt)
             </div>
             <div class="card-block bg-white">
-                <h1>{{tournaments[0].from | date:'dd.MM.yyyy'}}</h1>
+                <h1>{{bestTrack}} ({{averageTrack}})</h1>
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
                 Korrekturwert
             </div>
             <div class="card-block bg-white">
-                <h1>TBD</h1>
+                <h1>{{tournaments[0].correcture}}</h1>
             </div>
         </div>
     </div>
