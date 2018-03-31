@@ -13,7 +13,7 @@ export class PlayerdetailComponent implements OnInit {
   private license: String;
   private bestScoreThisYear: String;
   private bestScore: String;
-  private playerURL: String = "https://db.swingolf.at/assets/images/players/007-0020.jpg";
+  private playerURL: String = "https://db.swingolf.at/assets/images/players/noimage.jpg";
   public alerts: Array<any> = [];
   public sliders: Array<any> = [];
   previoustournaments: Observable<Array<any>>;
@@ -26,7 +26,7 @@ export class PlayerdetailComponent implements OnInit {
   players2: Array<any> = ["{firstname:''}"];
 
   constructor(private route: ActivatedRoute, eventbusService: EventbusService) {
-    this.route.params.subscribe( params => {this.license=params['id'];console.log(params);} );
+    this.route.params.subscribe( params => {this.license=params['id'];this.playerURL="https://db.swingolf.at/assets/images/players/"+this.license+".jpg";console.log(params);} );
     this.eventBusService = eventbusService;
   }
 

@@ -61,7 +61,8 @@
 
     </div>
     <div class="card-block bg-white">
-        <img [attr.src]="playerURL" width="100%"/>
+        <img [attr.src]="playerURL" (error)="img.src = 'https://db.swingolf.at/assets/images/players/noimage.jpg'"
+             width="100%" #img>
     </div>
     </div>
     </div>
