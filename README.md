@@ -16,6 +16,7 @@ convert to csv
 ng generate component layout/persondetail
 
 ng build 
+ng build --prod --aot 
 scp -r * root@db.swingolf.at:/opt/swingolf-app/jenkins_home/webroot/
 
 images
