@@ -30,7 +30,17 @@ public class UIVerticle extends AbstractVerticle {
         }));
 
         // Serve the static resources
-        router.route().handler(StaticHandler.create().setAllowRootFileSystemAccess(true).setCachingEnabled(false).setWebRoot(System.getProperty("webroot","/webroot")));
+        String webroot = System.getProperty("webroot", "/webroot");
+        router.route("/index.html").handler(StaticHandler.create().setAllowRootFileSystemAccess(true).setCachingEnabled(false).setWebRoot(webroot));
+        router.route("/assets/").handler(StaticHandler.create().setAllowRootFileSystemAccess(true).setCachingEnabled(true).setWebRoot(webroot));
+        router.route().handler(StaticHandler.create().setAllowRootFileSystemAccess(true).setCachingEnabled(true).setWebRoot(webroot));
+        router.route().failureHandler(handler -> {
+            if (handler.normalisedPath().startsWith("/assets/")) {
+                handler.response().setStatusCode(404).end();
+            } else {
+                handler.response().sendFile(webroot + "/index.html").end();
+            }
+        });
 
         vertx.createHttpServer().requestHandler(router::accept).listen(8088);
 
