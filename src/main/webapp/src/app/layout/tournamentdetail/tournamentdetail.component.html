@@ -111,7 +111,8 @@
                 Verteilung je Punktzahl
             </div>
             <div class="card-block">
-                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                        [legend]="barChartLegend" [chartType]="barChartType">
                 </canvas>
             </div>
         </div>
@@ -122,7 +123,8 @@
                     Verteilung je Punktzahl
                 </div>
                 <div class="card-block">
-                    <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels"
+                            [chartType]="pieChartType">
                     </canvas>
                 </div>
             </div>

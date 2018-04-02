@@ -19,7 +19,12 @@ ng build
 scp -r * root@db.swingolf.at:/opt/swingolf-app/jenkins_home/webroot/
 
 images
-scp -r * root@db.swingolf.at:/opt/swingolf-app/jenkins_home/webroot/
+
+in players directory 
+mogrify -resize 50x50 -quality 70 -path ./small *.jpg
+
+in assets directory
+scp -r * root@db.swingolf.at:/opt/swingolf-app/jenkins_home/webroot/assets/images/players/
 
 # Questions 
 Frontend questions

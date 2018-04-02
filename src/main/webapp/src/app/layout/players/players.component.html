@@ -7,6 +7,7 @@
                     <table class="table">
                         <thead class="thead-inverse">
                         <tr>
+                            <th></th>
                             <th>{{'Lizenz' | translate}}</th>
                             <th>Vorname</th>
                             <th>Nachname</th>
@@ -14,6 +15,10 @@
                         </thead>
                         <tbody>
                         <tr *ngFor="let player of players">
+                            <td><img
+                                [attr.src]="'https://db.swingolf.at/assets/images/players/small/'+player.license+'.jpg'"
+                                (error)="img.src = 'https://db.swingolf.at/assets/images/players/small/noimage.jpg'"
+                                width="50" #img></td>
                             <th scope="row"><a routerLink="../playerdetail/{{player.license}}">{{player.license}}</a></th>
                             <td>{{player.firstname}}</td>
                             <td>{{player.lastname}}</td>

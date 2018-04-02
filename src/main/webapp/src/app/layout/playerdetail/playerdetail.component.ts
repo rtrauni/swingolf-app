@@ -10,10 +10,10 @@ import { EventbusService } from './../../eventbus.service';
 })
 export class PlayerdetailComponent implements OnInit {
   private eventBusService: EventbusService;
-  private license: String;
-  private bestScoreThisYear: String;
-  private bestScore: String;
-  private playerURL: String = "https://db.swingolf.at/assets/images/players/noimage.jpg";
+  public license: String;
+  public bestScoreThisYear: String;
+  public bestScore: String;
+  public playerURL: String = "https://db.swingolf.at/assets/images/players/noimage.jpg";
   public alerts: Array<any> = [];
   public sliders: Array<any> = [];
   previoustournaments: Observable<Array<any>>;

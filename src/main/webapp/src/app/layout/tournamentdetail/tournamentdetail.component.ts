@@ -10,11 +10,11 @@ import { EventbusService } from './../../eventbus.service';
 })
 export class TournamentdetailComponent implements OnInit {
   private eventBusService: EventbusService;
-  private tournamentId: String;
-  private bestTrack: String;
-  private averageTrack: String;
-  private bestScore: String;
-  private averageScore: String;
+  public tournamentId: String;
+  public bestTrack: String;
+  public averageTrack: String;
+  public bestScore: String;
+  public averageScore: String;
 
   public playerCount: String;
 
