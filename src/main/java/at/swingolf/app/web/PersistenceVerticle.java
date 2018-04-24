@@ -70,11 +70,8 @@ public class PersistenceVerticle extends AbstractVerticle {
         String queryTournamentsAndDate = "MATCH (node1:Tournament)-[r:HAS_DATE]->(node2:Duration) RETURN node1.name as name,node2.from as from,node2.to as to,ID(node1) as id LIMIT 1000";
         eventBus.consumer("tournaments-and-dates").handler(message -> message.reply(queryArrayWithCypher(queryTournamentsAndDate, "name", "from", "to", "id")));
 
-        String tournamentByTournamentId = "MATCH (node1:Tournament)-[r:HAS_DATE]->(node2:Duration) WHERE ID(node1)=param1 RETURN node1.name as name,node2.from as from,node2.to as to,ID(node1) as id  LIMIT 1000";
-        eventBus.consumer("getDetailsForTournament").handler(message -> message.reply(queryArrayWithCypher(tournamentByTournamentId.replaceAll("param1",message.body().toString()) , "name","from")));
-
-        String playersByTournamentId = "MATCH (node1:Tournament)-[r:HAS_DATE]->(node2:Duration) WHERE ID(node1)=param1 RETURN node1.name as name,node2.from as from,node2.to as to,ID(node1) as id  LIMIT 1000";
-        eventBus.consumer("getDetailsForTournament").handler(message -> message.reply(queryArrayWithCypher(tournamentByTournamentId.replaceAll("param1",message.body().toString()) , "name","from")));
+        String tournamentByTournamentId = "MATCH (node1:Tournament)-[r:HAS_DATE]->(node2:Duration) WHERE ID(node1)=param1 RETURN node1.name as name, node1.location as location, node1.correcture as correcture, node2.from as from,node2.to as to,ID(node1) as id  LIMIT 1000";
+        eventBus.consumer("getDetailsForTournament").handler(message -> message.reply(queryArrayWithCypher(tournamentByTournamentId.replaceAll("param1", message.body().toString()), "name", "location", "correcture", "from")));
 
         eventBus.consumer("getPlayerCountForTournament").handler(message -> message.reply(queryPlayerCount(message.body().toString())));
 
